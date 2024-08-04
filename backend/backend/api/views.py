@@ -43,7 +43,7 @@ class RecipieViewSet(viewsets.ModelViewSet):
     @action(
         detail=True,
         methods=['post', 'delete'],
-        permission_classes=[IsAuthenticated,]
+        permission_classes=[IsAuthenticated, ]
     )
     def favorite(self, request, pk):
         recipe = get_object_or_404(Recipe, id=pk)
@@ -58,7 +58,7 @@ class RecipieViewSet(viewsets.ModelViewSet):
     @action(
         detail=True,
         methods=['post', 'delete'],
-        permission_classes=[IsAuthenticated,]
+        permission_classes=[IsAuthenticated, ]
     )
     def shopping_cart(self, request, pk):
         recipe = get_object_or_404(Recipe, id=pk)
@@ -75,7 +75,7 @@ class RecipieViewSet(viewsets.ModelViewSet):
     @action(
         detail=False,
         methods=['get'],
-        permission_classes=[IsAuthenticated,]
+        permission_classes=[IsAuthenticated, ]
     )
     def download_shopping_cart(self, request):
         ingredients = IngredientRecipie.objects.filter(
@@ -96,7 +96,7 @@ class RecipieViewSet(viewsets.ModelViewSet):
     @action(
         detail=True,
         methods=['get'],
-        permission_classes=[AllowAny,],
+        permission_classes=[AllowAny, ],
         url_path='get-link'
     )
     def get_link(self, request, pk=None):
