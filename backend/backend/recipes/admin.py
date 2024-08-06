@@ -21,13 +21,16 @@ class IngredientAdmin(admin.ModelAdmin):
 
 class IngredientRecipeInLine(admin.TabularInline):
     model = IngredientRecipie
+    min_num = 1
 
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
     list_display = ('pk', 'name', 'author', 'favorites_amount')
-    search_fields = ('name', 'author')
-    list_filter = ('name', 'author', 'tags')
+    search_fields = ('name', 'author', 'tags')
+    list_filter = (
+        'name', 'author', 'tags', 'ingredients',
+    )
     inlines = [
         IngredientRecipeInLine,
     ]
