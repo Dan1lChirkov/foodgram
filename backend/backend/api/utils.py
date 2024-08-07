@@ -1,4 +1,3 @@
-from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.response import Response
 
@@ -8,15 +7,11 @@ from recipes.models import Ingredient, IngredientRecipie
 def create_ingredients(ingredients, recipe):
     ingredient_list = []
     for ingredient in ingredients:
-        current_ingredient = get_object_or_404(
-            Ingredient,
-            id=ingredient.get('id')
-        )
         amount = ingredient.get('amount')
         ingredient_list.append(
             IngredientRecipie(
                 recipe=recipe,
-                ingredient=current_ingredient,
+                ingredient=Ingredient.objects.get(pk=ingredient.get('id')),
                 amount=amount
             )
         )

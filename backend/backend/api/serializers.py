@@ -1,3 +1,4 @@
+from django.db import transaction
 from rest_framework import serializers
 from drf_extra_fields.fields import Base64ImageField
 from djoser.serializers import UserCreateSerializer, UserSerializer
@@ -204,6 +205,7 @@ class RecipePostSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('Это поле не может быть пустым')
         return value
 
+    @transaction.atomic
     def create(self, validated_data):
         request = self.context.get('request')
         ingredients = validated_data.pop('recipeingredients')
@@ -216,6 +218,7 @@ class RecipePostSerializer(serializers.ModelSerializer):
         create_ingredients(ingredients, recipe)
         return recipe
 
+    @transaction.atomic
     def update(self, instance, validated_data):
         ingredients = validated_data.pop('recipeingredients')
         tags = validated_data.pop('tags')
