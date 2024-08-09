@@ -168,3 +168,5 @@ DJOSER = {
         'user': ['rest_framework.permissions.AllowAny'],
     }
 }
+
+BASE_URL = 'https://foodproject.ddns.net/'
