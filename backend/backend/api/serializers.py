@@ -10,6 +10,7 @@ from recipes.models import (
 )
 from .utils import create_ingredients
 from users.models import User, Subscription
+from backend.settings import BASE_URL
 
 
 class RecipeSmallSerializer(serializers.ModelSerializer):
@@ -328,7 +329,7 @@ class RecipeShortLink(serializers.ModelSerializer):
         fields = ('short_link',)
 
     def get_short_link(self, obj):
-        base_url = 'https://foodproject.ddns.net/'
+        base_url = BASE_URL
         created = shorten_url(
             f'{base_url}recipes/{obj.id}',
             is_permanent=False

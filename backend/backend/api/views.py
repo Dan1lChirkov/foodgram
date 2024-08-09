@@ -13,7 +13,7 @@ from recipes.models import (
     Recipe, Tag, Ingredient, Favorite, ShoppingCart,
     IngredientRecipie
 )
-from .permissioms import AuthorAdminOrReadOnly
+from .permissions import AuthorAdminOrReadOnly
 from .serializers import (
     TagSerializer, IngredientSerializer,
     RecipePostSerializer, RecipeGetSerializer,
@@ -177,6 +177,6 @@ def avatar(request):
 def me(request):
     if not request.user.is_authenticated:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
-    user = User.objects.get(id=request.user.id)
+    user = get_object_or_404(User, id=request.user.id)
     serializer = UserSelfSerializer(user)
     return Response(serializer.data, status=status.HTTP_200_OK)
