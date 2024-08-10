@@ -9,7 +9,7 @@ def create_ingredients(ingredients, recipe):
     for ingredient in ingredients:
         amount = ingredient.get('amount')
         ingredient_list.append(
-            IngredientRecipie(
+            IngredientRecipie.objects.filter(
                 recipe=recipe,
                 ingredient__id=ingredient.get('id'),
                 amount=amount
