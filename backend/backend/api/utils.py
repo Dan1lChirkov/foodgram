@@ -11,7 +11,7 @@ def create_ingredients(ingredients, recipe):
         ingredient_list.append(
             IngredientRecipie(
                 recipe=recipe,
-                ingredient=ingredient.get('id'),
+                ingredient__id=ingredient.get('id'),
                 amount=amount
             )
         )
