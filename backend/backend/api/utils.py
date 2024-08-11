@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.response import Response
 
-from recipes.models import IngredientRecipie
+from recipes.models import IngredientRecipie, Ingredient
 
 
 def create_ingredients(ingredients, recipe):
@@ -11,7 +11,7 @@ def create_ingredients(ingredients, recipe):
         ingredient_list.append(
             IngredientRecipie(
                 recipe=recipe,
-                ingredient__id=ingredient.get('id'),
+                ingredient=Ingredient.objects.get(pk=ingredient.get('id')),
                 amount=amount
             )
         )
